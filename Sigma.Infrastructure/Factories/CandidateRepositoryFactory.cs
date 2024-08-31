@@ -17,11 +17,11 @@ public class CandidateRepositoryFactory : ICandidateRepositoryFactory
 
     public ICandidateRepository Create()
     {
-        if (_repositoryType.Equals("CSV", StringComparison.OrdinalIgnoreCase))
+        if (_repositoryType.Equals(Constants.RepositoryTypes.Csv, StringComparison.OrdinalIgnoreCase))
         {
             return new CandidateRepository(_csvFilePath);
         }
 
-        throw new ArgumentException($"There is no repository with type '{_repositoryType}'");
+        throw new ArgumentException($"There is no repository with type '{_repositoryType}' allowed types are {Constants.RepositoryTypes.GetRepositoryTypes()}");
     }
 }
