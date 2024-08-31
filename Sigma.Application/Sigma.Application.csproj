@@ -9,4 +9,13 @@
     <ProjectReference Include="..\Sigma.Domain\Sigma.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DI\" />
+    <Folder Include="Query\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.0" />
+  </ItemGroup>
+
 </Project>
