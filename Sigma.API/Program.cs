@@ -1,7 +1,5 @@
-using MediatR;
 using Sigma.API.MappingProfiles;
 using Sigma.Application.DI;
-using Sigma.Application.Validations;
 using Sigma.Infrastructure.DI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +8,7 @@ ConfigureAutoMapper(builder.Services);
 
 ConfigureMediator(builder.Services);
 
-AddAppServices(builder.Services);
+AddAppServices(builder.Services, builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
@@ -42,8 +40,8 @@ static void ConfigureAutoMapper(IServiceCollection services)
     services.AddAutoMapper(typeof(CandidateProfile).Assembly);
 }
 
-static void AddAppServices(IServiceCollection services)
+static void AddAppServices(IServiceCollection services, IConfiguration configuration)
 {
-    services.AddInfrastructureServices();
+    services.AddInfrastructureServices(configuration);
     services.AddApplicationServices();
 }

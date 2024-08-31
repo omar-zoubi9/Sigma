@@ -2,7 +2,7 @@
 
 public interface ICandidateRepository
 {
-    Task<Candidate> GetCandidateAsync(string email);
+    Task<Candidate> GetCandidateByEmailAsync(string email);
 
     Task AddCandidateAsync(Candidate candidate);
 
