@@ -1,6 +1,6 @@
 ﻿namespace Sigma.Application;
 
-public abstract class BaseResponse<TData>
+public class BaseResponse<TData>
 {
     public TData Data { get; set; }
 

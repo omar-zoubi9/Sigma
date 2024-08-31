@@ -11,7 +11,7 @@ using Sigma.Application.Command.Candidate;
 
 public class CandidateController : BaseController
 {
-    protected CandidateController(IMediator mediator, IMapper mapper)
+    public CandidateController(IMediator mediator, IMapper mapper)
         : base(mediator, mapper)
     {
     }

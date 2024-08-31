@@ -2,14 +2,34 @@
 
 using MediatR;
 
-public sealed class CandidateCommandHandler : IRequestHandler<CandidateCommand, BaseResponse<int>>
+using Sigma.Domain.AggregateModels.CandidateAggregate;
+
+public sealed class CandidateCommandHandler : IRequestHandler<CandidateCommand, BaseResponse<Candidate>>
 {
-    public CandidateCommandHandler()
+    private readonly ICandidateRepository _candidateRepository;
+
+    public CandidateCommandHandler(ICandidateRepository candidateRepository)
     {
+        _candidateRepository = candidateRepository;
     }
 
-    public Task<BaseResponse<int>> Handle(CandidateCommand request, CancellationToken cancellationToken)
+    public async Task<BaseResponse<Candidate>> Handle(CandidateCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var candidate = await _candidateRepository.GetCandidateAsync(request.Email);
+
+        if (candidate is null)
+        {
+            var newCandidate = Candidate.New(request);
+
+            await _candidateRepository.AddCandidateAsync(newCandidate);
+        }
+        else
+        {
+            candidate.Update(request);
+
+            await _candidateRepository.UpdateCandidateAsync(candidate);
+        }
+
+        return new BaseResponse<Candidate>() { Data = candidate, IsSuccess = true };
     }
 }

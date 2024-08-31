@@ -8,6 +8,8 @@ public class CandidateModel : ICandidateModel
 
     public string PhoneNumber { get; set; }
 
+    public string Email { get; set; }
+
     public DateTime CallDate { get; set; }
 
     public string LinkedInProfileURL { get; set; }

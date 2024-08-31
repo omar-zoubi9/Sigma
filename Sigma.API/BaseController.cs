@@ -16,7 +16,7 @@ public class BaseController : ControllerBase
         Mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
-    public IMediator Mediator { get; }
+    protected IMediator Mediator { get; }
 
-    public IMapper Mapper { get; }
+    protected IMapper Mapper { get; }
 }

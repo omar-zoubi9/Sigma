@@ -1,16 +1,19 @@
-using AutoMapper;
-
+using MediatR;
 using Sigma.API.MappingProfiles;
+using Sigma.Application.DI;
+using Sigma.Application.Validations;
+using Sigma.Infrastructure.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-ConfigureAutoMapper(builder);
+ConfigureAutoMapper(builder.Services);
 
 ConfigureMediator(builder.Services);
+
+AddAppServices(builder.Services);
+
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -21,23 +24,26 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
 
 static void ConfigureMediator(IServiceCollection services)
 {
-    services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(typeof(Program).Assembly));
+    services.AddMediatR(config =>
+    {
+        config.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+    });
 }
 
-static void ConfigureAutoMapper(WebApplicationBuilder builder)
+static void ConfigureAutoMapper(IServiceCollection services)
 {
-    builder.Services.AddSingleton(provider => new MapperConfiguration(configuration =>
-    {
-        // configuration.ConfigureApplicationMapperProfiles(provider);
-        configuration.AddProfile(new CandidateProfile());
-    }).CreateMapper());
+    services.AddAutoMapper(typeof(CandidateProfile).Assembly);
+}
+
+static void AddAppServices(IServiceCollection services)
+{
+    services.AddInfrastructureServices();
+    services.AddApplicationServices();
 }
