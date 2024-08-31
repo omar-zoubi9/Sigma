@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigma.Infrastructure", "Sig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigma.API", "Sigma.API\Sigma.API.csproj", "{A71D1F7D-B604-4821-9608-CB6E181E9F50}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{914A922A-14F7-4563-B56C-76EC4F656929}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sigma.UnitTest", "Sigma.UnitTest\Sigma.UnitTest.csproj", "{5EB9A40C-B6F3-4DF4-92B9-8F69A49DA4B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,16 @@ Global
 		{A71D1F7D-B604-4821-9608-CB6E181E9F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A71D1F7D-B604-4821-9608-CB6E181E9F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A71D1F7D-B604-4821-9608-CB6E181E9F50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EB9A40C-B6F3-4DF4-92B9-8F69A49DA4B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EB9A40C-B6F3-4DF4-92B9-8F69A49DA4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EB9A40C-B6F3-4DF4-92B9-8F69A49DA4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EB9A40C-B6F3-4DF4-92B9-8F69A49DA4B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5EB9A40C-B6F3-4DF4-92B9-8F69A49DA4B6} = {914A922A-14F7-4563-B56C-76EC4F656929}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1612B85E-D7B3-4B12-97EB-1E1B77974EC3}
